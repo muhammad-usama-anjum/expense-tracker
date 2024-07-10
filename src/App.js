@@ -56,11 +56,7 @@ function App() {
   };
 
   const downloadJSON = () => {
-    const dataToDownload = filteredExpenses.length > 0 ? filteredExpenses : expenses;
-    const totalExpenses = calculateTotalExpenses(dataToDownload);
-    const dataWithTotal = { expenses: dataToDownload, total: totalExpenses };
-
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataWithTotal));
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(expenses));
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
     downloadAnchorNode.setAttribute("download", "expenses.json");
@@ -87,17 +83,9 @@ function App() {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (e) => {
-      try {
-        const data = JSON.parse(e.target.result);
-        if (Array.isArray(data)) {
-          setExpenses(data);
-          setFilteredExpenses(data);
-        } else {
-          console.error('Uploaded data is not an array');
-        }
-      } catch (error) {
-        console.error('Error parsing uploaded JSON', error);
-      }
+      const data = JSON.parse(e.target.result);
+      setExpenses(data);
+      setFilteredExpenses(data);
     };
     reader.readAsText(file);
   };
