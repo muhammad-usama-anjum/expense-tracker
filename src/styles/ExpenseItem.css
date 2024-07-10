@@ -1,0 +1,26 @@
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.expense-date,
+.expense-description,
+.expense-amount {
+  flex: 1;
+  text-align: left;
+}
+
+.expense-date {
+  color: #007bff;
+}
+
+.expense-amount {
+  color: #28a745;
+  font-weight: bold;
+}
