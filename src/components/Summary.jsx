@@ -8,7 +8,8 @@ function Summary({ expenses }) {
 
   return (
     <div className="summary">
-      <h2>Total: Rs.{totalAmount.toFixed(2)}</h2>
+      <h1>EXPENSES LIST</h1>
+      <h2>Total: Rs. {totalAmount.toFixed(2)}</h2>
     </div>
   );
 }

@@ -85,33 +85,6 @@ function App() {
     };
     reader.readAsText(file);
   };
-
-  const uploadXLSXExpenses = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const data = new Uint8Array(e.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const firstSheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[firstSheetName];
-        const parsedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-        if (parsedData.length === 0) {
-          console.warn('No data found in the uploaded file.');
-          return;
-        }
-
-        setExpenses(parsedData);
-        setFilteredExpenses(parsedData); // Ensure both states are updated
-
-      } catch (error) {
-        console.error('Error reading or parsing XLSX file:', error);
-      }
-    };
-    reader.readAsArrayBuffer(file);
-  };
   
 
   return (
@@ -124,9 +97,9 @@ function App() {
           <button onClick={downloadXLSX}>Download Excel</button>
         </div>
         <div className='buttons2'>
-        <button type="file" accept=".json" onChange={uploadJSONExpenses}>Upload JSON</button>
-        <button type="file" accept=".xlsx" onChange={uploadXLSXExpenses}>Upload XLSX</button>
+        <input type="file" accept=".json" onChange={uploadJSONExpenses}></input>
         </div>
+        <p className='para'>NOTE: You can only upload the JSON file</p>
         <Filter filterExpenses={filterExpenses} />
         <Summary expenses={filteredExpenses} />
         <ExpenseList expenses={filteredExpenses} />
