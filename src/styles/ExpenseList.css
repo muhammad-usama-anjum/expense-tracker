@@ -6,3 +6,9 @@
   font-size: 14px;
   color: #999;
 }
+
+@media (max-width: 768px) {
+  .expense-list p {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+}

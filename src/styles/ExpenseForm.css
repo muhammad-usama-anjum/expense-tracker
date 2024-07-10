@@ -2,4 +2,49 @@
   display: flex;
   flex-direction: column;
   margin: 10px 0;
+  width: 100%;
+  max-width: 550px; /* Adjust max-width as per your design */
+  margin: 0 auto; /* Center align the form */
+  padding: 20px;
+
+}
+
+/* Example styling for form elements */
+.expense-form input[type="text"],
+.expense-form input[type="number"],
+.expense-form input[type="date"] {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.expense-form button {
+  width: 150px;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.expense-form button:hover {
+  background-color: #2f3031;
+}
+
+@media (max-width: 768px) {
+  .expense-form {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .expense-form input[type="text"],
+  .expense-form input[type="number"],
+  .expense-form input[type="date"],
+  .expense-form button {
+    padding: 8px;
+  }
 }

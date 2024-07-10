@@ -1,8 +1,14 @@
 .header {
-    background-color: #275c75;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 1.5em;
+  background-color: #275c75;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 1.2em; /* Decrease font size for smaller screens */
+    padding: 15px; /* Reduce padding for smaller screens */
   }
-  
+}
