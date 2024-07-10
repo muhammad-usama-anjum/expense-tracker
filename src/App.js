@@ -15,9 +15,17 @@ function App() {
   useEffect(() => {
     const storedExpenses = localStorage.getItem('expenses');
     if (storedExpenses) {
-      const parsedExpenses = JSON.parse(storedExpenses);
-      setExpenses(parsedExpenses);
-      setFilteredExpenses(parsedExpenses);
+      try {
+        const parsedExpenses = JSON.parse(storedExpenses);
+        if (Array.isArray(parsedExpenses)) {
+          setExpenses(parsedExpenses);
+          setFilteredExpenses(parsedExpenses);
+        } else {
+          console.error('Parsed expenses is not an array');
+        }
+      } catch (e) {
+        console.error('Error parsing expenses from localStorage', e);
+      }
     }
   }, []);
 
@@ -79,13 +87,20 @@ function App() {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (e) => {
-      const data = JSON.parse(e.target.result);
-      setExpenses(data);
-      setFilteredExpenses(data);
+      try {
+        const data = JSON.parse(e.target.result);
+        if (Array.isArray(data)) {
+          setExpenses(data);
+          setFilteredExpenses(data);
+        } else {
+          console.error('Uploaded data is not an array');
+        }
+      } catch (error) {
+        console.error('Error parsing uploaded JSON', error);
+      }
     };
     reader.readAsText(file);
   };
-  
 
   return (
     <div className="App">
@@ -97,7 +112,7 @@ function App() {
           <button onClick={downloadXLSX}>Download Excel</button>
         </div>
         <div className='buttons2'>
-        <input type="file" accept=".json" onChange={uploadJSONExpenses}></input>
+            <input type="file" accept=".json" onChange={uploadJSONExpenses} />
         </div>
         <p className='para'>NOTE: You can only upload the JSON file</p>
         <Filter filterExpenses={filterExpenses} />
