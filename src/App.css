@@ -27,6 +27,13 @@
   }
 }
 
+.delete{
+  background-color: #1ab694;
+}
+.delete:hover{
+  background-color: red;
+}
+
 .para{
   animation: blink 2s infinite;
   font-size: smaller;

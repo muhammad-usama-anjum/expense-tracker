@@ -90,6 +90,12 @@ function App() {
     reader.readAsText(file);
   };
 
+  const deleteAllExpenses = () => {
+    setExpenses([]);
+    setFilteredExpenses([]);
+    localStorage.removeItem('expenses');
+  };
+
   return (
     <div className="App">
       <Header />
@@ -106,6 +112,7 @@ function App() {
         <Filter filterExpenses={filterExpenses} />
         <Summary expenses={filteredExpenses} />
         <ExpenseList expenses={filteredExpenses} />
+        <button className='delete' onClick={deleteAllExpenses}>Delete All Expenses</button>
       </div>
     </div>
   );
